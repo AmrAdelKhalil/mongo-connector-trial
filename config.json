@@ -1,0 +1,25 @@
+{
+    "oplogFile": "./oplog.timestamp",
+    "noDump": false,
+    "batchSize": 1000,
+    "verbosity": 2,
+    "continueOnError": false,
+    "logging": {
+        "type": "stream"
+    },
+    "namespaces": {
+        "swvl.users": true,
+        "swvl.posts": {
+            "rename": "<DBNAME>.post",
+            "includeFields": [
+                "name"
+            ]
+        }
+    },
+    "docManagers": [
+        {
+            "docManager": "elastic2_doc_manager",
+            "bulkSize": 2000
+        }
+    ]
+}

@@ -1,0 +1,24 @@
+version: '3.1'
+services:
+    mongo-connector:
+        build: .
+        environment:
+            MONGO_HOST: mymongo:27017
+            ELASTICSEARCH_HOST: elasticsearch
+        restart: always
+        depends_on:
+            - mymongo
+    elasticsearch:
+        image: docker.elastic.co/elasticsearch/elasticsearch:5.5.3
+        environment:
+          - node.name=elasticsearch
+          - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+          - xpack.security.enabled=false
+        ports:
+          - 9200:9200 
+        restart: always
+    mymongo:
+        image: mongo:4.0
+        command: mongod --replSet my-mongo-set
+        ports:
+            - 27017:27017
