@@ -22,3 +22,9 @@ services:
         command: mongod --replSet my-mongo-set
         ports:
             - 27017:27017
+
+# You will need to run the following commands after exec your mongo container
+# rs.initiate()
+# c=rs.config()
+# c.members[0].host="mymongo:27017"
+# rs.reconfig(c)
